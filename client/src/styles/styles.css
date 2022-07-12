@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+
+.dropdown-toggle::after {
+  display: none !important; 
+}
+
+body {
+  background: #f3f3f3 !important;
+}
+
+.bodyHome {
+  width: 100%;
+  height: 25rem;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.backgroundImage {
+  background: url('../assets/left.svg') left top no-repeat, url('../assets/right.svg') right top no-repeat;
+  background-size: 35rem, 35rem;
+  max-height: 50vh;
+}
+
+.backgroundImageFull {
+  background: url('../assets/left.svg') left top no-repeat, url('../assets/right.svg') right top no-repeat;
+  background-size: 25rem, 25rem;
+  min-height: 75vh;
+}
+
+.booksImage {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+.booksImageDetail {
+  width: 40%;
+  object-fit: cover;
+}
+
+.slideCard{
+  border-radius: 0 !important;
+  margin: 5rem !important;
+}
+
+.container {
+  width: 100%;
+}
+
+.sentenceHead {
+  font-family: 'Vollkorn', serif !important;
+  text-align: center;
+}
+
+.sentenceSection {
+  font-family: 'Vollkorn', serif !important;
+  font-weight: bold;
+}
+
+.bookTitle {
+  font-family: 'Vollkorn', serif !important;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.bookTitleDetail {
+  font-family: 'Vollkorn', serif !important;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.bookAuthor {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.bookAuthorDetail {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.detailTitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.detailSentence {
+  font-size: 14px;
+}
+
+.bookPrice {
+  font-size: 12px;
+  color: green;
+  font-weight: bold;
+}
+
+.text-truncate-container p {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.profileContainer {
+  background-color: #FFD9D9;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.form input {
+  background: rgba(210, 210, 210, 0.25);
+  border: 2px solid #bcbcbc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+}
+
+.form select {
+  background: rgba(210, 210, 210, 0.25);
+  border: 2px solid #bcbcbc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+}
+
+.form textarea {
+  background: rgba(210, 210, 210, 0.25);
+  border: 2px solid #bcbcbc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+}
+
+.btnLogin {
+  background: #393939 !important;
+  border-radius: 0px !important;
+
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 25px !important;
+
+  color: #ffffff !important;
+}
+
+.btnHere {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.btnHere:hover {
+  cursor: pointer;
+}
+
+.label-file-add-book {
+  background: rgba(210, 210, 210, 0.25);
+  border: 2px solid #bcbcbc;
+  color: rgb(126,132,139);
+  padding: 0.5rem 1rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+
+.img-chat {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+}
+
+.chat-me {
+  position: relative;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
+}
+
+.chat-other {
+  position: relative;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  max-width: 400px;
+}
+
+.img-contact {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
+}
+
+.img-chat {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+}
+
+.text-contact {
+  font-size: 14px;
+}
+
+.text-contact-chat {
+  color: black;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+}
+.contact img {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.contact ul {
+  list-style-type: none;
+}
+
+.contact:hover {
+  background-color: #7b7777;
+  transition: 0.5s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact:active {
+  background-color: #3d3d3d;
+  transition: 0.3s;
+}
+
+.contact-active {
+  background-color: rgb(196,196,196);
+  border-radius: 5px;
+}
+
+.input-message {
+  width: 100%;
+  height: 90%;
+  background: rgb(196,196,196);
+  border: none;
+  color: black;
+  border-radius: '5px';
+}
