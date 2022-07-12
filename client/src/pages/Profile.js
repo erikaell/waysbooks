@@ -10,6 +10,7 @@ import dataBooks from '../dummyData/books'
 import EditProfile from "../components/Modal/EditProfile"
 import { useQuery } from 'react-query'
 import { API } from '../config/api'
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
     const [datas] = useState(dataBooks)
@@ -22,6 +23,10 @@ function Profile() {
       return response.data.data;
     });
 
+    let { data: transactions } = useQuery('transactionsCache', async () => {
+        const response = await API.get('/transactions');
+        return response.data.data;
+      });
 
 
     return (
@@ -87,14 +92,15 @@ function Profile() {
                             <h3 className="sentenceSection mt-4">My Books</h3>
                         </Col>
                         <Row>
-                            {datas.map((item) => (
-                                <Col sm="2" key={item.id}>
+                            {transactions?.map((item) => (
+                                <Col sm="2" key={item.books.id}>
                                     <Card className="mb-3" style={{ backgroundColor: 'transparent', border: 'none' }}>
-                                        <Card.Img variant="top" style={{ borderRadius: 1 }} src={item.img} />
+                                        <Card.Img variant="top" style={{ borderRadius: 1 }} src={process.env.REACT_APP_SERVER_URL_FILE + item?.books[0].thumbnail}/>
                                         <Card.Body style={{ padding: 0 }}>
-                                            <p className='bookTitle' style={{ marginTop: '5px', marginBottom: '5px' }}>{item.title}</p>
-                                            <p className='bookAuthor text-muted'>By. {item.author}</p>
-                                            <Button variant="dark" style={{ borderRadius: 0, width: '100%', alignItems: 'center' }}> Download </Button>
+                                            <p className='bookTitle' style={{ marginTop: '5px', marginBottom: '5px' }}>{item.books[0].title}</p>
+                                            <p className='bookAuthor text-muted'>By. {item.books[0].author}</p>
+                                            
+                                            <Button variant="dark" style={{ borderRadius: 0, width: '100%', alignItems: 'center' }}> <a href={process.env.REACT_APP_SERVER_URL_FILE + item?.books[0].bookattachment} target="_blank" style={{textDecoration:"none", color:"white"}}> Download </a> </Button>
                                         </Card.Body>
                                     </Card>
                                 </Col>

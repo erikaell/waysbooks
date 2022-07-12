@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from 'react-query'
-import dateFormat from 'dateformat';
+import dateFormat from 'dateformat'
 import { API } from '../config/api'
 import NavbarAdmin from "../components/Navbar/NavbarAdmin"
 import { Row, Col, Button, Table } from "react-bootstrap"

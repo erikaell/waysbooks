@@ -2,10 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-// Controller
-// const { addProduct, getProduct, getAllProducts, updateProduct, deleteProduct } = require('../controllers/products')
-// const { addCategory, getAllCategories, getCategory, updateCategory, deleteCategory } = require('../controllers/category')
-const { addTransaction, getAllTransactionsAdmin } = require('../controllers/transaction')
+const { addTransaction, getAllTransactionsAdmin, getAllTransactions, notification } = require('../controllers/transaction')
 const { addBooks, getAllBooks, getBook, getAllPromoBooks, deleteBook } = require('../controllers/books')
 const { getProfile, updateProfile } = require('../controllers/profile')
 const { register, login, checkAuth } = require('../controllers/auth')
@@ -30,9 +27,10 @@ router.delete('/book/:id', auth, deleteBook)
 // // Transaction
 router.post('/transaction', auth, addTransaction)
 router.get('/transactionsadmin', auth, getAllTransactionsAdmin)
+router.get('/transactions', auth, getAllTransactions)
 
-// // Create router for notification with POST method here ...
-// router.post("/notification", notification);
+// Create router for notification with POST method here ...
+router.post("/notification", notification);
 
 // Profile
 router.patch('/profile', auth, uploadFile.single("image"), updateProfile)

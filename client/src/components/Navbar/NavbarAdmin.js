@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/Logo.svg'
-import cart from '../../assets/cart.svg'
 import complain from '../../assets/complain-admin.svg'
 import iconlogout from '../../assets/logout.svg'
 import book from '../../assets/add-book.svg'

@@ -1,5 +1,4 @@
 import BooksLanding from "../components/BooksLanding"
-import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import logo from '../assets/Logo.svg'
 // import { useContext } from 'react'
@@ -11,6 +10,7 @@ import Register from "../components/Modal/Register"
 
 
 function Landing() {
+
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
 
@@ -26,6 +26,7 @@ function Landing() {
         setRegisterShow(true);
     }
 
+
     return (
         <>
             <div>
@@ -33,7 +34,7 @@ function Landing() {
                     <div className="backgroundImage">
                         <Navbar bg="transparent" expand="lg" >
                             <Container>
-                                <Navbar.Brand href="#"><img src={logo} style={{ maxWidth: '8rem' }} alt="" /></Navbar.Brand>
+                                <Navbar.Brand href="/"><img src={logo} style={{ maxWidth: '8rem' }} alt="" /></Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                                     <Nav className="align-items-center">

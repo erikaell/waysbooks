@@ -29,6 +29,7 @@ function BookDetail() {
             price : book.price,
             image : book?.thumbnail
         });
+        navigate('/user/cart')
         console.log('succes')
     }
 

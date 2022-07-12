@@ -6,73 +6,56 @@ const midtransClient = require("midtrans-client");
 // Import nodemailer here ...
 const nodemailer = require("nodemailer");
 
-// exports.getAllTransactions = async (req, res) => {
-//   try {
-//     const idBuyer = req.user.id;
-//     let data = await transactions.findAll({
-//       where: {
-//         idBuyer,
-//       },
-//       order: [["createdAt", "DESC"]],
-//       attributes: {
-//         exclude: ["updatedAt", "idBuyer", "idSeller", "idProduct"],
-//       },
-//       include: [
-//         {
-//           model: products,
-//           as: "products",
-//           attributes: {
-//             exclude: [
-//               "createdAt",
-//               "updatedAt",
-//               "idUser",
-//               "qty",
-//               "price",
-//               "desc",
-//             ],
-//           },
-//         },
-//         {
-//           model: users,
-//           as: "buyer",
-//           attributes: {
-//             exclude: ["createdAt", "updatedAt", "password", "status"],
-//           },
-//         },
-//         {
-//           model: users,
-//           as: "seller",
-//           attributes: {
-//             exclude: ["createdAt", "updatedAt", "password", "status"],
-//           },
-//         },
-//       ],
-//     });
+exports.getAllTransactions = async (req, res) => {
+  try {
+    const idBuyer = req.user.id;
+    let data = await transactions.findAll({
+      where: {
+        idBuyer,
+        status: "success"
+      },
+      order: [["createdAt", "DESC"]],
+      attributes: {
+        exclude: ["updatedAt", "idBuyer", "idSeller", "idProduct"],
+      },
+      include: {
+        model: books,
+        as: "books",
+        through: {
+          model: bookspurchased,
+          as: 'bridge',
+          attributes: [],
+        },
 
-//     data = JSON.parse(JSON.stringify(data));
+      }
+    });
 
-//     data = data.map((item) => {
-//       return {
-//         ...item,
-//         products: {
-//           ...item.products,
-//           image: process.env.PATH_FILE + item.products.image,
-//         },
-//       };
-//     });
 
-//     res.send({
-//       status: "success",
-//       data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.send({
-//       status: "failed",
-//       message: "Server Error",
-//     });
-//   }
-// };
+    data = JSON.parse(JSON.stringify(data));
+
+    // data = data.map((item) => {
+    //   return {
+    //     ...item,
+    //     books: {
+    //       ...item.books,
+    //       thumbnail: process.env.PATH_FILE + item.books.thumbnail,
+    //       bookattachment: process.env.PATH_FILE + item.books.bookattachment,
+    //     },
+    //   };
+    // });
+
+    res.send({
+      status: "success",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.send({
+      status: "failed",
+      message: "Server Error",
+    });
+  }
+};
 
 exports.getAllTransactionsAdmin = async (req, res) => {
     try {
@@ -134,21 +117,12 @@ exports.getAllTransactionsAdmin = async (req, res) => {
 
       let bookId = req.body.booksId;
 
-      bookId.forEach(e => bookspurchased.create({idTransaction:newData.id, idBook:e}));
-      
-      // let { booksId } = req.body.booksId;
+        const bookPurchasedData = bookId.map((item) => {
+          return { idBook: parseInt(item), idTransaction: newData.id };
+        });
 
-      // if (booksId) {
-      //   booksId = booksId.split(',');
-      // }
 
-      // if (booksId) {
-      //   const bookPurchasedData = booksId.map((item) => {
-      //     return { idBook: parseInt(item), idTransaction: newData.id };
-      //   });
-  
-      //   await bookspurchased.bulkCreate(bookPurchasedData);
-      // }
+        let dataBooks = await bookspurchased.bulkCreate(bookPurchasedData);
 
       // Get buyer data here ...
       const buyerData = await users.findOne({
@@ -195,7 +169,8 @@ exports.getAllTransactionsAdmin = async (req, res) => {
       res.send({
         status: "pending",
         message: "Pending transaction payment gateway",
-        payment
+        payment,
+        dataBooks
       });
     } catch (error) {
       console.log(error);
@@ -246,7 +221,6 @@ exports.getAllTransactionsAdmin = async (req, res) => {
           sendEmail("success", orderId);
           // TODO set transaction status on your database to 'success'
           // and response with 200 OK
-          updateProduct(orderId);
           updateTransaction("success", orderId);
           res.status(200);
         }
