@@ -6,6 +6,7 @@ import Slider from "react-slick"
 import { Card, Row, Col, Button } from "react-bootstrap"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import convertRp from 'rupiah-format'
 
 
 function BooksLanding({setLoginShow}) {
@@ -53,7 +54,7 @@ function BooksLanding({setLoginShow}) {
                                         <div className="text-truncate-container">
                                             <p>{item.description}</p>
                                         </div>
-                                        <p className='bookPrice' style={{ marginTop: '5px' }}>Rp. {item.price}</p>
+                                        <p className='bookPrice' style={{ marginTop: '5px' }}>{convertRp.convert(item.price)}</p>
                                         <Button variant="dark" onClick={() => setLoginShow(true)} style={{ borderRadius: 0, width: '100%', marginBottom: '5px' }}>Add to Cart</Button>
                                     </Col>
                                 </Row>
@@ -74,7 +75,7 @@ function BooksLanding({setLoginShow}) {
                                         <p className='bookTitle' style={{ marginTop: '5px', marginBottom: '5px', textDecoration: 'none' }}>{item.title}</p>
                                     </a>
                                     <p className='bookAuthor text-muted'>By. {item.author}</p>
-                                    <p className='bookPrice' style={{ marginTop: '5px' }}>Rp. {item.price}</p>
+                                    <p className='bookPrice' style={{ marginTop: '5px' }}>{convertRp.convert(item.price)}</p>
                                 </Card.Body>
                             </Card>
                         </Col>

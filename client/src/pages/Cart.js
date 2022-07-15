@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useMutation, useQuery } from "react-query"
 import { API } from "../config/api"
 import { UserContext } from '../context/userContext'
+import convertRp from 'rupiah-format'
 
 function Cart() {
 
@@ -111,7 +112,7 @@ function Cart() {
                                                 <Col sm={10}>
                                                     <p className='bookTitle' style={{ marginTop: '5px', marginBottom: '5px' }}>{item[1].name}</p>
                                                     <p className='bookAuthorDetail text-muted mb-4'>{item[1].author}</p>
-                                                    <p className='detailSentence text-success mb-2' style={{ fontWeight: 'bold' }}>{item[1].price}</p>
+                                                    <p className='detailSentence text-success mb-2' style={{ fontWeight: 'bold' }}>{convertRp.convert(item[1].price)}</p>
                                                 </Col>
                                                 <Col sm={2}>
                                                     <div className="justify-content-end d-flex">
@@ -124,31 +125,31 @@ function Cart() {
                                 ))}
                             </Col>
                             <Col>
-                                <div sm={4} style={{ borderTop: "2px solid black", borderBottom: "2px solid black" }} className="p-3">
+                                <div sm={4} style={{ borderTop: "2px solid black", borderBottom: "2px solid black"}} className="p-3">
                                     <Row>
-                                        <Col sm={10}>
+                                        <Col sm={8}>
                                             Subtotal
                                         </Col>
-                                        <Col sm={2}>
-                                            {totalPrice}
+                                        <Col sm={4} style={{ textAlign: "end" }}>
+                                            {convertRp.convert(totalPrice)}
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col sm={10}>
+                                        <Col sm={8}>
                                             Qty
                                         </Col>
-                                        <Col sm={2}>
+                                        <Col sm={4} style={{ textAlign: "end" }}>
                                             {cartCount}
                                         </Col>
                                     </Row>
                                 </div>
                                 <div className="p-3">
                                     <Row className="text-success" style={{ fontWeight: "bold" }}>
-                                        <Col sm={10}>
+                                        <Col sm={8}>
                                             Total
                                         </Col>
-                                        <Col sm={2}>
-                                            {totalPrice}
+                                        <Col sm={4} style={{ textAlign: "end" }}>
+                                            {convertRp.convert(totalPrice)}
                                         </Col>
                                     </Row>
                                     <div className="justify-content-center d-flex mt-5">

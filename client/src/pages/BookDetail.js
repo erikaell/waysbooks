@@ -5,6 +5,7 @@ import { Row, Col, Button } from "react-bootstrap"
 import { API } from '../config/api'
 import { useShoppingCart } from "use-shopping-cart"
 import cart from '../assets/cart-white.svg'
+import convertRp from 'rupiah-format'
 
 function BookDetail() {
 
@@ -55,7 +56,7 @@ function BookDetail() {
                             <p className='detailTitle mb-1 text-danger'>ISBN</p>
                             <p className='detailSentence text-muted mb-2'>{book?.isbn}</p>
                             <p className='detailTitle mb-1'>Price</p>
-                            <p className='detailSentence text-success mb-2' style={{ fontWeight:'bold' }}>{book?.price}</p>
+                            <p className='detailSentence text-success mb-2' style={{ fontWeight:'bold' }}>{convertRp.convert(book?.price)}</p>
                         </Col>
                     <Col sm={3}>
                     </Col>    

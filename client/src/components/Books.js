@@ -6,7 +6,7 @@ import Slider from "react-slick"
 import { Card, Row, Col, Button } from "react-bootstrap"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-
+import convertRp from 'rupiah-format'
 
 function Books() {
 
@@ -53,7 +53,7 @@ function Books() {
                                         <div className="text-truncate-container">
                                             <p>{item.description}</p>
                                         </div>
-                                        <p className='bookPrice' style={{ marginTop: '5px' }}>Rp. {item.price}</p>
+                                        <p className='bookPrice' style={{ marginTop: '5px' }}>{convertRp.convert(item.price)}</p>
                                         <Link style={{ textDecoration: 'none', color:'black' }} to={`/user/book-detail/${item.id}`}>
                                         <Button variant="dark" style={{ borderRadius: 0, width: '100%', marginBottom: '5px' }}>Add to Cart</Button>
                                         </Link>
@@ -76,7 +76,7 @@ function Books() {
                                         <p className='bookTitle' style={{ marginTop: '5px', marginBottom: '5px' }}>{item.title}</p>
                                     </Link>
                                     <p className='bookAuthor text-muted'>By. {item.author}</p>
-                                    <p className='bookPrice' style={{ marginTop: '5px' }}>Rp. {item.price}</p>
+                                    <p className='bookPrice' style={{ marginTop: '5px' }}>Rp. {convertRp.convert(item.price)}</p>
                                 </Card.Body>
                             </Card>
                         </Col>

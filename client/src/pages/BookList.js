@@ -5,8 +5,8 @@ import dateFormat from 'dateformat'
 import { API } from '../config/api'
 import NavbarAdmin from "../components/Navbar/NavbarAdmin"
 import { Row, Col, Button, Table } from "react-bootstrap"
-import dataBooks from '../dummyData/books'
 import DeleteData from '../components/Modal/DeleteData'
+import convertRp from 'rupiah-format'
 
 function BookList() {
     let navigate = useNavigate();
@@ -67,7 +67,7 @@ function BookList() {
                     <NavbarAdmin />
                     <Row style={{ paddingLeft: "5rem", paddingRight: "5rem", margin: 0 }}>
                         <Col>
-                            <h3 className="sentenceSection mb-4">List Category</h3>
+                            <h3 className="sentenceSection mb-4">List Books</h3>
                         </Col>
                         <Col className="text-end">
                             <Button
@@ -104,7 +104,7 @@ function BookList() {
                                                 <td>{dateFormat(item.publicationdate, 'dddd, d mmmm yyyy')}</td>
                                                 <td>{item.pages}</td>
                                                 <td>{item.isbn}</td>
-                                                <td>{item.price}</td>
+                                                <td>{convertRp.convert(item.price)}</td>
                                                 <td style={{ overflow:"auto" }}>{item.description}</td>
                                                 <td>{item.promobook}</td>
                                                 <td><a target="_blank" href={item.bookattachment} className="btnHere">Book-File.pdf</a></td>

@@ -24,7 +24,9 @@ exports.getAllTransactions = async (req, res) => {
         through: {
           model: bookspurchased,
           as: 'bridge',
-          attributes: [],
+          attributes: {
+            exclude: ["idUser"]
+          },
         },
 
       }
